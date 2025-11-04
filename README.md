@@ -1,8 +1,8 @@
 # Submission
-Here is my submission.
+This is my submission for the challenge problem. I used Ruby to complete this challenge. I successfully completed it within the provided time frame.
 
 ## Run Instructions
-1. Download the files [on my GitHub page](https://github.com/BernardScottIII), or at https://github.com/BernardScottIII.
+1. Download the files [from the repository](https://github.com/BernardScottIII/SUBSCRIBE_challenge), or at https://github.com/BernardScottIII/SUBSCRIBE_challenge.
 
 2. Ensure Ruby version 2.6.10p210 (2022-04-12 revision 67958) [universal.arm64e-darwin24] is installed.
 
@@ -34,12 +34,15 @@ ruby index.rb < input1.txt
 ```
 
 ## Discussion
-Since the problem statement explicitly asks me to print out the receipt details, they are printed to the console.
-I took some time to explore Ruby and play around with the various features of the language.
-Why did I name the primary file `index.rb`? Because I know Ruby is frequently used for web development, and the main entry point for most websites is named index.
-Since everything in Ruby is an object, let's make everything in this project an object!
-I put the basic sales tax and import duty in the basket class because if either of those changed, they wouldn't necessarily impact the items themselves. It would only impact your total at checkout (the total price of the basket).
-I tried my best at documenting my Ruby code.
+This was a fun exercise which introduced me to the basics of programming in Ruby. I spent most of the challenge time learning about the various apects of the Ruby programming language, from the language's syntax and style guide to it's object-oriented core. 
+
+To embrace the object-oriented nature of Ruby, I decided to create two objects for this solution, `Item` and `Basket`. An `Item` represents a single entry in the provided input file, and records the quantity, name, and price per unit of that entry. Multiple `Item`s are collected together into a single shopping `Basket`. When an item is added to a `Basket` using the `add()` function, the sales taxes and total cost amounts are updated upon each addition. The `Basket` class provides `print_recipt()`, a function to retrieve the subtotal for each item, as well as the applied taxes for the entire `Basket`. 
+
+I decided to store the variables corresponding to sales tax and import duty in the `Basket`. This was motivated by the fact that the taxes applied to each  item are different, and it would not be sensible for each item to know every single tax/duty in existence.
+
+One minor choice I made was to name the main entry point `index.rb`. I made this decision because I know that Ruby is frequently used to build web applications, and the main entry point for most of them is named `index`.
+
+While functionality was prioritized over documentation, I still gave an effort to document the classes I created.
 
 ## Assumptions
 - All data provided to the program is in the format: (quantity) (name) at (price per unit). Additionally, that all fields are always in the same order and separated by spaces.
@@ -48,7 +51,7 @@ I tried my best at documenting my Ruby code.
 - All food items contain the string "chocolate". That is, an item with the name of "Pretzel" would not be exempt from sales tax.
 - All medical products contain the string "headache pills". That is, an item with the name of "Bandage" would not be exempt from sales tax.
 - All imported goods contain the string "imported". The string "imported" may appear at any point within the item name.
+- The `Item` class assumes that the provided initialization parameters are the correct data type (integer, string, float).
 
-## Resources Consulted
-I learned quite a bit about Ruby in the four hours. And here are the places I learned everything from.
-- Fireship.io
+## Future Improvements
+One opprotunity for improvement of this program is to make the exemption process more reusable by creating an `Exemption` object. Within that object, I could programatically apply exemptions, instead of relying on hard-coded comparisions.

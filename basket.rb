@@ -62,9 +62,11 @@ class Basket
 
     @applied_tax += sales_tax * item.quantity
 
-    item.price = (item.price + sales_tax) * item.quantity
+    new_price = (item.price + sales_tax) * item.quantity
 
-    @total_cost += item.price.round(2)
+    @total_cost += ((item.price + sales_tax) * item.quantity).round(2)
+
+    return Item.new(item.quantity, item.name, new_price)
   end
 
   def add(item)
@@ -72,7 +74,7 @@ class Basket
       raise TypeError, "Object is not an Item type."
     end
 
-    apply_taxes(item)
+    item = apply_taxes(item)
     @items.push(item)
   end
 
